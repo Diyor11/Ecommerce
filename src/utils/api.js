@@ -9,16 +9,14 @@ import axios from 'axios';
 const token = localStorage.getItem('token')    
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080/api', // replase your database link
+  baseURL: `${process.env.REACT_APP_API}/api`, // replase your database link
   headers: token ? {
     Authorization: `Bearer ${token}` // Authorization token
   }:{}
 });
 
 
-export const setToken = token => {
-  console.log('settoken');
-  
+export const setToken = token => {  
   if (token) {
     api.defaults.headers['Authorization'] = `Bearer ${token}`;
     localStorage.setItem('token', token)

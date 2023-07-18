@@ -147,8 +147,22 @@
   }
 }
 
-// @mixin media-breakpoint-down($breakpoint) {
-//   @media only screen and (max-width: $breakpoint) {
-    
-//   }
-// }
+@mixin media-breakpoint-down($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin media-breakpoint-up($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}

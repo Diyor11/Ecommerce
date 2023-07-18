@@ -8,13 +8,13 @@ import React, { useRef } from 'react';
 
 import { Row, Col } from 'reactstrap';
 
-import UserRole from '../UserRole';
 import Input from '../../Common/Input';
 import Button from '../../Common/Button';
 import {useForm} from 'react-hook-form'
 import { inputIntegrate } from '../../../utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup'
+import Badge from '../../Common/Badge';
 
 const accountScheme = Yup.object({
   firstName: Yup.string().min(3).max(30),
@@ -51,7 +51,9 @@ const AccountDetails = (props) => {
     <div className='account-details'>
       <div className='info'>
         <div className='desc'>
-          <UserRole user={user} />
+          <Badge variant='primary' >
+            Member
+          </Badge>
         </div>
       </div>
       <form onSubmit={handleSubmit(_handleSubmit)}>

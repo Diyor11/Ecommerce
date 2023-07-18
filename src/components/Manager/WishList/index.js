@@ -23,11 +23,8 @@ const WishList = props => {
           <img
             className='item-image'
             alt='product'
-            src={`${
-              product.imageUrl
-                ? product.imageUrl
-                : '/images/placeholder-image.png'
-            }`}
+            src={`${process.env.REACT_APP_API + product.imageUrl}`}
+
           />
         </div>
       );

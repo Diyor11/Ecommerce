@@ -4,16 +4,24 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
 import { Collapse, Navbar } from 'reactstrap';
 
 import Button from '../../Common/Button';
+import { useMediaQuery } from '../../../hooks';
+import { BREAKPOINTS } from '../../../constants';
 
 const AccountMenu = props => {
-  const { user, isMenuOpen, links, toggleMenu } = props;
+  const { user, links } = props;
   
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const toggleMenu = () => {
+    if(size < BREAKPOINTS.md) 
+      setIsMenuOpen(prev => !prev)
+  }
+  const {size} = useMediaQuery()
 
   const getAllowedProvider = link => {
     if (!link?.provider) return true;
@@ -28,9 +36,9 @@ const AccountMenu = props => {
     <div className='panel-sidebar'>
       <Button
         text='Dashboard Menu'
-        className={`${isMenuOpen ? 'menu-panel' : 'menu-panel collapse'}`}
+        className={`${isMenuOpen ? 'menu-panel' : 'menu-panel collapse'} show`}
         ariaExpanded={isMenuOpen ? 'true' : 'false'}
-        // ariaLabel={isMenuOpen ? 'dashboard menu expanded' : 'dashboard menu collapse'}
+        ariaLabel={isMenuOpen ? 'dashboard menu expanded' : 'dashboard menu collapse'}
         onClick={toggleMenu}
       />
       <h3 className='panel-title'>Account</h3>
@@ -45,7 +53,9 @@ const AccountMenu = props => {
                 <li key={index}>
                   <NavLink
                     to={PREFIX + link.to}
-                    // activeClassName='active-link'
+                    className={({isActive}) => isActive ? 'active-link':''}
+                    onClick={toggleMenu}
+                    end
                   >
                     {link.name}
                   </NavLink>

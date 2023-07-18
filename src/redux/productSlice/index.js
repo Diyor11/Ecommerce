@@ -23,7 +23,10 @@ const productSlide = createSlice({
             state.diteils = {...state.diteils, ...payload}
         },
         setFilter: (state, {payload}) => {
-            state.filters = {...state.filters, ...payload}
+            if(payload.page)
+                state.filters = {...state.filters, ...payload}
+            else 
+                state.filters = {...state.filters, ...payload, page: 1}
         },
         setBrands: (state, {payload}) => {
             state.brands = payload

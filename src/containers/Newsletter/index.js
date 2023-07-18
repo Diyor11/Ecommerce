@@ -4,20 +4,20 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 // import actions from '../../actions';
 
 import Input from '../../components/Common/Input';
 import Button from '../../components/Common/Button';
 
-function Newsletter( email = 'ggg.@gamil.com', newsletterChange = () => {}, subscribeToNewsletter, formErrors = {} ) {
+function Newsletter() {
+
+    const [email, setEmail] = useState('')
 
     const handleSubmit = event => {
       event.preventDefault();
-      // subscribeToNewsletter();
     };
 
-    const ref= React.useRef()
 
   return (
     <div className='newsletter-form'>
@@ -26,15 +26,13 @@ function Newsletter( email = 'ggg.@gamil.com', newsletterChange = () => {}, subs
         <div className='subscribe'>
           <Input
             type={'text'}
-            // ref={ref}  
-            // error={formErrors['email']}
-            // name={'email'}
-            // placeholder={'Please Enter Your Email'}
-            // value={email}
-            // onChange={(name, value) => {
-            //   newsletterChange(name, value);
-            // }}
-            // inlineElement={SubscribeButton}
+            name={'email'}
+            placeholder={'Please Enter Your Email'}
+            value={email}
+            onChange={(name, value) => {
+              setEmail(value);
+            }}
+            inlineElement={SubscribeButton}
           />
         </div>
       </form>

@@ -15,7 +15,7 @@ const Pagination = () => {
   const displayPagination = Number(totalPages) > 1;
 
   const handlePageClick = event => {
-    
+    window.scrollTo(0,0)
     dispatch(setFilter({page: event.selected + 1}))
   };
 

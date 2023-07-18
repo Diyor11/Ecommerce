@@ -13,7 +13,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDiteils } from '../../redux/productSlice';
 
-function CategoryShop(props){
+function CategoryShop(){
 
   const {sendRequest, isLoading} = useHttp()
   const [products, setProducts] = useState([])
@@ -47,7 +47,7 @@ function CategoryShop(props){
 
   return (
     <div className='category-shop'>
-      {isLoading && <LoadingIndicator />}
+      {isLoading && <LoadingIndicator backdrop/>}
       {products && products.length > 0 && (
         <ProductList
           products={products}

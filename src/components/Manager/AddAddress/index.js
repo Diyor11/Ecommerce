@@ -54,7 +54,7 @@ const AddAddress = (props) => {
               id={'default'}
               label={'As the Default'}
               defaultValue={true}
-              // {...inputIntegrate({name: 'default'}, register)}
+              {...inputIntegrate({name: 'default'}, register)}
             />
           </Col>
         </Row>

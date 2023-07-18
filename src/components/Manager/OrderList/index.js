@@ -20,15 +20,11 @@ const OrderList = props => {
         <img
           className='item-image'
           alt='order'
-          src={`${
-            product && product?.imageUrl
-              ? product?.imageUrl
-              : '/images/placeholder-image.png'
-          }`}
+          src={`${process.env.REACT_APP_API + product.imageUrl}`}
         />
       );
     } else {
-      return <img className='item-image' alt='order' src='/images/placeholder-image.png' />;
+      return <img className='item-image' alt='order' src={process.env.REACT_APP_API + `/images/placeholder-image.png`} />;
     }
   };
   

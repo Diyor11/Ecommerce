@@ -8,7 +8,6 @@ import React from 'react';
 
 import AccountDetails from '../../components/Manager/AccountDetails';
 import SubPage from '../../components/Manager/SubPage';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHttp } from '../../hooks';
 import { updateUser } from '../../redux/profleSlice';

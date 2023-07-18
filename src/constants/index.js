@@ -1,14 +1,7 @@
 export const BASE_API_URL = process.env.BASE_API_URL;
 
-export const SOCKET_URL =
-  window.location.host.indexOf('localhost') >= 0
-    ? 'http://127.0.0.1:3000'
-    : window.location.host;
-
 export const ROLES = {
-  Admin: 'ADMIN',
   Member: 'MEMBER',
-  Merchant: 'MERCHANT'
 };
 
 export const CART_ITEMS = 'cart_items';
@@ -18,12 +11,6 @@ export const TOKEN = 'token';
 
 export const CART_ITEM_STATUS = {
   Cancelled: 'Cancelled',
-};
-
-export const MERCHANT_STATUS = {
-  Rejected: 'Rejected',
-  Approved: 'Approved',
-  Waiting_Approval: 'Waiting Approval'
 };
 
 export const REVIEW_STATUS = {
@@ -37,3 +24,11 @@ export const EMAIL_PROVIDER = {
   Google: 'Google',
   Facebook: 'Facebook'
 };
+
+export const BREAKPOINTS = {
+  sm:  576,
+  md: 768,
+  lg:  992,
+  xl: 1200,
+  xxl: 1400
+}

@@ -6,17 +6,16 @@
 
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom'
-import { useHttp } from '../../hooks';
+import { useDispatch, useSelector } from 'react-redux';
 
-// import actions from '../../actions';
+import { useHttp } from '../../hooks';
+import { setDiteils } from '../../redux/productSlice';
 
 import ProductList from '../../components/Store/ProductList';
 import NotFound from '../../components/Common/NotFound';
 import LoadingIndicator from '../../components/Common/LoadingIndicator';
-import { useDispatch, useSelector } from 'react-redux';
-import { setDiteils } from '../../redux/productSlice';
 
-function BrandsShop(props) {
+function BrandsShop() {
 
   const {sendRequest, isLoading} = useHttp()
   const [products, setProducts] = useState([])
@@ -27,7 +26,7 @@ function BrandsShop(props) {
   useEffect(() => {
     const {order, ...rest} = filters
     sendRequest(
-  {url: `/product/list?brand=${params.slug}`, method: 'get', params: {setSort: order, ...rest}},
+      {url: `/product/list?brand=${params.slug}`, method: 'get', params: {setSort: order, ...rest}},
       ({products, ...rest}) => {
         setProducts(products)
         dispatch(setDiteils({
@@ -36,8 +35,6 @@ function BrandsShop(props) {
         }))
       }
     )
-    // const slug = this.props.match.params.slug;
-    // this.props.fetchBrandProducts(slug);
   }, [sendRequest, params.slug, dispatch, filters])
 
   useEffect(() => {
@@ -51,7 +48,7 @@ function BrandsShop(props) {
   return (
     <div className='brands-shop'>
       {isLoading ? (
-        <LoadingIndicator />
+        <LoadingIndicator backdrop />
       ) : products.length > 0 ? (
         <ProductList
           products={products}

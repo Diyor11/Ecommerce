@@ -27,16 +27,12 @@ export default function renderSuggestion(suggestion, { query, isHighlighted }) {
     };
 
     return (
-      <Link to={`/product/${suggestion.slug}`}>
+      <Link to={`/product/${suggestion._id}`}>
         <div className='d-flex'>
           <img
-            alt='prodyc'
+            alt='product'
             className='item-image'
-            src={`${
-              suggestion.imageUrl
-                ? suggestion.imageUrl
-                : '/images/placeholder-image.png'
-            }`}
+            src={`${process.env.REACT_APP_API + suggestion.imageUrl}`}
           />
           <div>
             <Container>

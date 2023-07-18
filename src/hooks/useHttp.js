@@ -15,9 +15,7 @@ const useHttp = () => {
         if(notifyOptions) {
           if(notifyOptions instanceof Function) {
             notifyOptions(response)
-          } else {
-            console.log(response)
-            
+          } else {            
             const message = notifyOptions.message || response.data.message  
             delete notifyOptions?.message
             toast(message, {type: notifyOptions.type || 'success', ...notifyOptions})
@@ -26,11 +24,9 @@ const useHttp = () => {
         const data = response.data;
         applyData(data);
       } catch (err) {      
-        console.log(err);
-          
         const errorMessage = err.response?.data.message || err.message || 'Something went wrong!'
-        toast(errorMessage, {type: 'error'})
         setError(errorMessage);
+        toast(errorMessage, {type: 'error'})
       }
       setIsLoading(false);
     }, []);

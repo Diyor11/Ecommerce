@@ -48,7 +48,6 @@ function Add(props) {
       handleAction={() => navigate(-1)}
     >
       <AddAddress
-        // addressFormData={{}}
         formErrors={errors}
         register={register}
         addAddress={handleSubmit(_addAddress)}
@@ -56,12 +55,5 @@ function Add(props) {
     </SubPage>
   );
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     addressFormData: state.address.addressFormData,
-//     formErrors: state.address.formErrors
-//   };
-// };
 
 export default Add;

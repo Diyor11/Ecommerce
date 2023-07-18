@@ -1,1 +1,10 @@
 // Here you can add other styles
+.align-items-center{
+    align-items: center
+}
+
+.text-md-right{
+    @include media-breakpoint-up(md) {
+        text-align: right;
+    }
+}

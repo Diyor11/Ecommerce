@@ -7,57 +7,9 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { Row, Col, DropdownItem } from 'reactstrap';
-
-import { ROLES, CART_ITEM_STATUS } from '../../../constants';
-import Button from '../../Common/Button';
-import DropdownConfirm from '../../Common/DropdownConfirm';
-
+import { Row, Col } from 'reactstrap';
 const OrderItems = props => {
-  const { order, user, updateOrderItemStatus } = props;
-
-  const renderPopoverContent = item => {
-    const statuses = Object.values(CART_ITEM_STATUS);
-
-    return (
-      <div className='d-flex flex-column align-items-center justify-content-center'>
-        {statuses.map((s, i) => (
-          <DropdownItem
-            key={`${s}-${i}`}
-            className={s === item?.status ? 'active' : ''}
-            onClick={() => updateOrderItemStatus(item._id, s)}
-          >
-            {s}
-          </DropdownItem>
-        ))}
-      </div>
-    );
-  };
-
-  const renderItemsAction = item => {
-    const isAdmin = user.role === ROLES.Admin;
-
-    if (item.status === CART_ITEM_STATUS.Delivered) {
-      return (
-        <Link
-          to={`/product/${item.product.slug}`}
-          className='btn-link text-center py-2 fs-12'
-          style={{ minWidth: 120 }}
-        >
-          Reivew Product
-        </Link>
-      );
-    } else if (item.status !== 'Cancelled') {
-        return (
-          <DropdownConfirm
-            label={item.product && item.status}
-            className={isAdmin ? 'admin' : ''}
-          >
-            {renderPopoverContent(item)}
-          </DropdownConfirm>
-        );
-    }
-  };
+  const { order } = props;
 
   return (
     <div className='order-items pt-3'>
@@ -71,13 +23,9 @@ const OrderItems = props => {
                   <img
                     alt='product'
                     className='item-image'
-                    src={`${
-                      item.product && item.product.imageUrl
-                        ? item.product.imageUrl
-                        : '/images/placeholder-image.png'
-                    }`}
+                    src={`${process.env.REACT_APP_API + item.product.imageUrl}`}
                   />
-                  <div className='d-md-flex flex-1 align-items-start ml-4 item-box'>
+                  <div className='d-md-flex flex-1 align-items-start ms-4 item-box'>
                     <div className='item-details'>
                       {item.product ? (
                         <>
@@ -100,11 +48,11 @@ const OrderItems = props => {
                       )}
                     </div>
                     <div className='d-flex justify-content-between flex-wrap d-md-none mt-1'>
-                      <p className='mb-1 mr-4'>
+                      <p className='mb-1 me-4'>
                         Status
                         <span className='order-label order-status'>{` ${item.status}`}</span>
                       </p>
-                      <p className='mb-1 mr-4'>
+                      <p className='mb-1 me-4'>
                         Quantity
                         <span className='order-label'>{` ${item.quantity}`}</span>
                       </p>
@@ -134,11 +82,6 @@ const OrderItems = props => {
                   </div>
                 </div>
               </div>
-              {item.product && (
-                <div className='text-right mt-2 mt-md-0'>
-                  {renderItemsAction(item)}
-                </div>
-              )}
             </div>
           </Col>
         ))}

@@ -80,7 +80,7 @@ const rating = v => {
   }
 };
 
-const ProductFilter = props => {
+const ProductFilter = () => {
   
   const dispatch = useDispatch()
 

@@ -8,7 +8,7 @@ export default function Redirect({isPrivate, children}) {
 
 
     if(isPrivate) {
-        return authenticated ? {...children}:<Navigate to='/register' />
+        return authenticated ? {...children}:<Navigate to='/login' />
     } else {
         return authenticated ? <Navigate to='/dashboard' />:{...children}
     }

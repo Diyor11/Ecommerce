@@ -18,7 +18,10 @@ function Wishlist(props) {
   const {sendRequest, isLoading} = useHttp()
 
   useEffect(() => {
-    sendRequest('/wishlist', setWithList)
+    sendRequest('/wishlist', (data) => {
+      if(data.wishList)
+        setWithList(data.wishList)
+    })
   }, [sendRequest])
 
   const updateWishlist = (isLiked, id) => {

@@ -26,16 +26,12 @@ const CartList = props => {
                   <div className='d-flex align-items-center'>
                     <img
                       className='item-image mr-2'
-                      src={`${
-                        item.imageUrl
-                          ? item.imageUrl
-                          : '/images/placeholder-image.png'
-                      }`}
+                      src={`${process.env.REACT_APP_API + item.imageUrl}`}
                       alt='product'
                     />
 
                     <Link
-                      to={`/product/${item.slug}`}
+                      to={`/product/${item._id}`}
                       className='item-link one-line-ellipsis'
                       onClick={closeCart}
                     >

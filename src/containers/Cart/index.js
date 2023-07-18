@@ -4,9 +4,7 @@
  *
  */
 
-import React, { useEffect, useState } from 'react';
-
-// import actions from '../../actions';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import CartList from '../../components/Store/CartList';
 import CartSummary from '../../components/Store/CartSummary';
@@ -38,6 +36,7 @@ function Cart(props){
   const navigate = useNavigate()
 
   const displayAdress = addresses.length > 0
+  const displayCart = useMemo(() => cartItems.length > 0, [cartItems])
 
   const handleRemoveFromCart = (item) => dispatch(removeFromCart(item._id))
   const handleShopping = () => dispatch(toggleCart(false))
@@ -62,15 +61,18 @@ function Cart(props){
   }
 
   useEffect(() => {
-    if(isCartOpen)
-      sendRequest('/address' , ({addresses: data}) => {
-        const options = data.map((address, index) => ({value: index, label: address.address}))
-        setAddesses(options)
-        setSelectedAddress(options[0])
-      })
-    else 
+    if(isCartOpen) {
+      const token = localStorage.getItem('token')
+      if(token && displayCart) {
+        sendRequest('/address' , ({addresses: data}) => {
+          const options = data.map((address, index) => ({value: index, label: address.address}))
+          setAddesses(options)
+          setSelectedAddress(options[0])
+        })
+      }
+    } else 
       setAddesses([])
-  }, [isCartOpen, sendRequest])
+  }, [isCartOpen, sendRequest, displayCart])
 
 
   return (

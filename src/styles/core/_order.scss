@@ -1,30 +1,28 @@
-.order-dashboard {
-  .order-list {
-    .order-details {
-      @include flex();
-      flex-direction: column;
-      height: 100%;
-    }
+.order-list {
+  .order-details {
+    @include flex();
+    flex-direction: column;
+    height: 100%;
+  }
 
-    .order-box {
-      border-radius: $border-radius-default;
-      box-shadow: $box-shadow-secondary;
+  .order-box {
+    border-radius: $border-radius-default;
+    box-shadow: $box-shadow-secondary;
 
-      .order-first-item {
-        align-self: center;
+    .order-first-item {
+      align-self: center;
 
-        .item-image {
-          border-top-right-radius: $border-radius-default;
-          border-top-left-radius: $border-radius-default;
+      .item-image {
+        border-top-right-radius: $border-radius-default;
+        border-top-left-radius: $border-radius-default;
 
-          @include media-breakpoint-up(lg) {
-            border-radius: $border-radius-default;
-          }
+        @include media-breakpoint-up(lg) {
+          border-radius: $border-radius-default;
+        }
 
-          @include media-breakpoint-up(lg) {
-            width: 90px;
-            height: 90px;
-          }
+        @include media-breakpoint-up(lg) {
+          width: 90px;
+          height: 90px;
         }
       }
     }

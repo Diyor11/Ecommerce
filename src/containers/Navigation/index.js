@@ -72,7 +72,7 @@ export default function Navigation() {
   };
 
   const toggleMenu = () => setIsMenuOpen(prev => !prev)
-  const _toggleCart = (value) => dispatch(toggleCart(value))
+  const _toggleCart = (value) => dispatch(toggleCart())
   
   const toggleBrand = () => {
     if(!isBrandOpen) 
@@ -156,13 +156,17 @@ export default function Navigation() {
             className='desktop-hidden'
           >
             <div className='header-links'>
-              <Button
-                borderless
-                variant='empty'
-                ariaLabel='open the menu'
-                icon={<FaBars />}
-                onClick={toggleMenu}
-              />
+              {
+                categories && categories.length > 0 && (
+                  <Button
+                    borderless
+                    variant='empty'
+                    ariaLabel='open the menu'
+                    icon={<FaBars />}
+                    onClick={toggleMenu}
+                  />
+                )
+              }
               <CartIcon cartItems={cartItems} onClick={_toggleCart} />
             </div>
           </Col>
@@ -211,7 +215,7 @@ export default function Navigation() {
                 {(authenticated && user) ? (
                   <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav>
-                      {user.firstName ? user.firstName : 'Welcome'}
+                      {user.firstName}
                       <FiChevronDown />
                     </DropdownToggle>
                     <DropdownMenu>

@@ -248,8 +248,9 @@ body.user-is-tabbing button:focus {
 // button icon styles
 .input-btn {
   .btn-icon {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    vertical-align: bottom;
     line-height: 100%;
     font-size: 16px;
   }

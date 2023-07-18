@@ -45,7 +45,7 @@ body {
 .wrapper {
   padding: 260px 0px 25px;
 
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(sm) {
     padding: 25px 0px;
   }
 }

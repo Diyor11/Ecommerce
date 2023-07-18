@@ -6,9 +6,9 @@ import modal from './modalSlice'
 
 const store = configureStore({
     reducer: {
+        profile,
         product,
         cart,
-        profile,
         modal,
     }
 });

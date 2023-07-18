@@ -39,7 +39,7 @@
   .menu-panel {
     display: none;
     width: 100%;
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(md) {
       display: block;
       cursor: pointer;
     }

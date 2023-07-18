@@ -22,7 +22,8 @@ function ProductsShop() {
   const dispatch = useDispatch()  
 
   useEffect(() => {
-    const {order, ...rest} = filters
+    const {order, ...rest} = filters  
+    setProducts([])  
     sendRequest(
       {url: '/product/list', method: 'get', params: {setSort: order, ...rest}},
       ({products, ...rest}) => {
@@ -44,7 +45,7 @@ function ProductsShop() {
 
   return (
     <div className='products-shop'>
-      {isLoading && <LoadingIndicator />}
+      {isLoading && <LoadingIndicator backdrop/>}
       {displayProducts && (
         <ProductList
           products={products}

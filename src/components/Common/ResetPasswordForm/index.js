@@ -13,9 +13,8 @@ import Button from '../Button';
 import {inputIntegrate} from '../../../utils'
 
 const ResetPasswordForm = props => {
-  const {
-    handleSubmit, errors, register, resetPassword
-  } = props;
+  
+  const {handleSubmit, errors, register, resetPassword} = props;
 
   return (
     <div className='reset-password-form'>

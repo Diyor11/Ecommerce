@@ -11,6 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import AddToWishList from '../AddToWishList';
 import { useHttp } from '../../../hooks';
 import { useSelector } from 'react-redux';
+import {AiFillStar} from 'react-icons/ai'
 
 const ProductList = ({ products, updateProducts }) => {
   const {sendRequest} = useHttp()
@@ -58,11 +59,7 @@ const ProductList = ({ products, updateProducts }) => {
                       <img
                         alt='product'
                         className='item-image'
-                        src={`${
-                          product.imageUrl
-                            ? product.imageUrl
-                            : '/images/placeholder-image.png'
-                        }`}
+                        src={`${process.env.REACT_APP_API + product.imageUrl}`}
                       />
                     </div>
                   </div>
@@ -79,19 +76,12 @@ const ProductList = ({ products, updateProducts }) => {
                   </div>
                   <div className='d-flex flex-row justify-content-between align-items-center px-4 mb-2 item-footer'>
                     <p className='price mb-0'>${product.price}</p>
-                    {product.totalReviews > 0 && (
-                      <p className='mb-0'>
-                        <span className='fs-16 fw-normal mr-1'>
-                          {parseFloat(product?.averageRating).toFixed(1)}
-                        </span>
-                        <span
-                          className={`fa fa-star ${
-                            product.totalReviews !== 0 ? 'checked' : ''
-                          }`}
-                          style={{ color: '#ffb302' }}
-                        ></span>
-                      </p>
-                    )}
+                    <p className='mb-0'>
+                      <span className='fs-16 fw-normal mr-1'>
+                        {parseFloat(product?.averageRating).toFixed(1)}
+                      </span>
+                      <AiFillStar style={{ color: '#ffb302' }} />
+                    </p>
                   </div>
                 </Link>
               </div>

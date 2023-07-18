@@ -31,7 +31,6 @@ function Edit() {
   const {sendRequest} = useHttp()
   const [address, setAddress] = useState({})
   
-
   const { register, handleSubmit, formState: {errors }} = useForm({
     resolver: yupResolver(addressSchema),
     mode: 'onBlur',
@@ -42,7 +41,6 @@ function Edit() {
         setAddress(data)
     })
   }, [dispatch, sendRequest, id])
-
 
   const addressChange = (newData) => {
     sendRequest({url: `/address/${id}`, method: 'put', data: newData}, (data) => {
@@ -78,12 +76,5 @@ function Edit() {
     </SubPage>
   );
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     address: state.address.address,
-//     formErrors: state.address.editFormErrors
-//   };
-// };
 
 export default Edit;

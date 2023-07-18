@@ -33,14 +33,9 @@
 }
 
 .top-header {
-  // margin-top: 10px;
-  // margin-bottom: 10px;
-  // height: 95px;
   padding: 16px 0px;
 
-  @include media-breakpoint-up(lg) {
-    // height: 60px;
-
+  @include media-breakpoint-down(lg) {
     padding: 22px ​0px;
   }
 
@@ -66,7 +61,7 @@
   }
 
   .col-no-padding {
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-up(sm) {
       padding-right: 15px;
       padding-left: 15px;
     }
@@ -74,13 +69,19 @@
 
   .navbar {
     background-color: $white !important;
-    justify-content: flex-end;
     padding: 0;
+    
+    .container-fluid{
+      justify-content: flex-end;
+    }
 
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(md) {
       padding-top: 0;
       padding-bottom: 0.5rem;
-      justify-content: center;
+
+      .container-fluid{
+        justify-content: center;
+      }
     }
 
     .cart-icon {
@@ -92,7 +93,7 @@
 
   .navbar-nav {
     flex-direction: row;
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-down(md) {
       margin-left: 20px;
     }
 
@@ -129,7 +130,8 @@
 
     .nav-item {
       position: relative;
-      @include media-breakpoint-down(sm) {
+      
+      @include media-breakpoint-down(md) {
         margin-right: 15px;
       }
     }
@@ -147,7 +149,7 @@
     .logo {
       margin: 0px;
       color: $font-custom-color !important;
-      @include media-breakpoint-up(md) {
+      @include media-breakpoint-down(md) {
         margin-left: 15px;
       }
     }

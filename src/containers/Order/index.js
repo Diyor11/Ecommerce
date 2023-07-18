@@ -1,37 +1,83 @@
 /*
  *
- * Order
+ * List
  *
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-// import { useSelector } from 'react-redux';
-// import { Switch, Route } from 'react-router-dom';
 
-// import { ROLES } from '../../constants';
-// import List from './List';
-// import Customer from './Customer';
-// import Page404 from '../../components/Common/Page404';
+import { ROLES } from '../../constants';
+import SubPage from '../../components/Manager/SubPage';
+import OrderList from '../../components/Manager/OrderList';
+import OrderSearch from '../../components/Manager/OrderSearch';
+import SearchResultMeta from '../../components/Manager/SearchResultMeta';
+import NotFound from '../../components/Common/NotFound';
+import LoadingIndicator from '../../components/Common/LoadingIndicator';
+// import Pagination from '../../components/Common/Pagination';
+import { useHttp } from '../../hooks';
+import { useNavigate } from 'react-router-dom';
 
-function Order() {
-  // const user = useSelector(state => state.profile.user);
+function List(props) {
+  
+  const [search, setSearch] = useState('')
+  const [orders, setOrders] = useState([])
+  const {sendRequest, isLoading} = useHttp()
+
+  useEffect(() => {
+    sendRequest('/order', setOrders)
+  
+  }, [sendRequest])
+  
+
+  const handleOrderSearch = e => {
+    if (e.value.length >= 2)
+      setSearch(e.value)
+    else
+      setSearch('')
+  };
+  
+  const navigate = useNavigate()
+  const { user = {role: ''}, advancedFilters = [] } = props;
+  const isSearch = search.length > 0;
+  const filteredOrders = search
+    ? setOrders(prev => prev.filter(o => o._id.includes(search)))
+    : orders;
+
+  const displayOrders = filteredOrders && filteredOrders.length > 0;
 
   return (
-    <div className='product-dashboard'>
-      {/* <Switch>
-        <Route exact path='/dashboard/orders' component={List} />
-        {user.role === ROLES.Admin && (
-          <Route
-            exact
-            path='/dashboard/orders/customers'
-            component={Customer}
-          />
+    <div className='order-dashboard'>
+      <SubPage
+        title='Your Orders'
+        actionTitle={user.role === ROLES.Admin && 'Customer Orders'}
+        handleAction={() =>
+          user.role === ROLES.Admin &&
+          navigate('/dashboard/orders/customers')
+        }
+      >
+        <OrderSearch
+          onBlur={handleOrderSearch}
+          onSearch={handleOrderSearch}
+          onSearchSubmit={handleOrderSearch}
+        />
+
+        {isLoading && <LoadingIndicator />}
+        {displayOrders && (
+          <>
+            <SearchResultMeta
+              label='orders'
+              count={isSearch ? filteredOrders.length : advancedFilters.count}
+            />
+            <OrderList orders={filteredOrders} />
+          </>
         )}
-        <Route path='*' component={Page404} />
-      </Switch> */}
+        {!isLoading && !displayOrders && (
+          <NotFound message='You have no orders yet.' />
+        )}
+      </SubPage>
     </div>
   );
-};
+}
 
-export default Order
+export default List;

@@ -12,7 +12,7 @@ const OrderSummary = props => {
   const { order } = props;
 
   return (
-    <Col className='order-summary pt-3'>
+    <Col className='order-summary pt-3 px-3'>
       <h2>Order Summary</h2>
       <div className='d-flex align-items-center summary-item'>
         <p className='summary-label'>Subtotal</p>
@@ -31,7 +31,7 @@ const OrderSummary = props => {
       <hr />
       <div className='d-flex align-items-center summary-item'>
         <p className='summary-label'>Total</p>
-        <p className='summary-value ml-auto'>${order.totalWithTax || 0}</p>
+        <p className='summary-value ml-auto'>${order.totalPrice}</p>
       </div>
     </Col>
   );
