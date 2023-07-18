@@ -19,7 +19,7 @@ import Badge from '../../Common/Badge';
 const accountScheme = Yup.object({
   firstName: Yup.string().min(3).max(30),
   lastName: Yup.string().min(3).max(30),
-  phoneNumber: Yup.string().nullable().matches(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3,4}$/gmi, 'Phone number isn\'t valid').transform(val => (val || null)),
+  phoneNumber: Yup.string().nullable().matches(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{3,4}$/gmi, 'Phone number isn\'t valid').transform(val => (val || null)),
 })
 
 const AccountDetails = (props) => {

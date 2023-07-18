@@ -21,10 +21,8 @@ const ProductList = props => {
         >
           <img
             className='item-image'
-            src={`${
-              product && product.imageUrl
-                ? product.imageUrl
-                : '/images/placeholder-image.png'
+            alt={product.name || 'product'}
+            src={`${process.env.REACT_APP_API + product.imageUrl
             }`}
           />
           <div className='d-flex flex-column justify-content-center px-3 text-truncate'>

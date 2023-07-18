@@ -4,101 +4,85 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import Button from '../Button';
 
-class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
+function SearchBar(props) {
+  const [value, setValue] = useState('')
+  const [typingTimeout, setTypingTimeout] = useState(0)
 
-    this.state = {
-      value: '',
-      typing: false,
-      typingTimeout: 0
-    };
-  }
-
-  _onChange(e) {
+  const _onChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
 
     if (this.state.typingTimeout) {
-      clearTimeout(this.state.typingTimeout);
+      clearTimeout(typingTimeout);
     }
 
-    this.setState({
-      value,
-      typing: false,
-      typingTimeout: setTimeout(() => {
-        if (this.props.onSearch) {
-          this.props.onSearch({ name, value });
-        }
-      }, 1000)
-    });
+    setValue(value)
+    setTypingTimeout(setTimeout(() => {
+      if (this.props.onSearch) {
+        props.onSearch({ name, value });
+      }
+    }, 1000))
   }
 
-  _handleSubmit(e) {
+  const _handleSubmit = (e) => {
     e.preventDefault();
 
     const name = this.props.name;
     const value = this.state.value;
 
-    if (this.props.onSearchSubmit) {
-      this.props.onSearchSubmit({ name, value });
+    if (props.onSearchSubmit) {
+      props.onSearchSubmit({ name, value });
     }
   }
 
-  _onBlur(e) {
+  const _onBlur = (e) => {
     const name = e.target.name;
     const value = e.target.value;
 
-    if (this.props.onBlur) {
-      this.props.onBlur({ name, value });
+    if (props.onBlur) {
+      props.onBlur({ name, value });
     }
   }
 
-  render() {
-    const {
-      id,
-      name,
-      placeholder,
-      className,
-      inlineBtn,
-      btnText,
-      autoComplete
-    } = this.props;
-    const { value } = this.state;
+  const {
+    id,
+    name,
+    placeholder,
+    className,
+    inlineBtn,
+    btnText,
+    autoComplete
+  } = this.props;
 
-    const styles = `search-box${inlineBtn ? ` inline-btn-box` : ''}`;
-    const classNames = `input-text search-box${`${
-      className && ` ${className}`
-    }`}`;
+  const styles = `search-box${inlineBtn ? ` inline-btn-box` : ''}`;
+  const classNames = `input-text search-box${`${
+    className && ` ${className}`
+  }`}`;
 
-    return (
-      <form onSubmit={e => this._handleSubmit(e)} noValidate>
-        <div className={styles}>
-          <div className='input-text-block'>
-            <input
-              autoComplete={autoComplete}
-              type='text'
-              id={id}
-              name={name}
-              className={classNames}
-              placeholder={placeholder}
-              value={value}
-              onChange={e => {
-                this._onChange(e);
-              }}
-              onBlur={e => this._onBlur(e)}
-              onKeyPress={this.props.onKeyPress || null}
-            />
-            <Button type='submit' variant='primary' text={btnText} />
-          </div>
+  return (
+    <form onSubmit={_handleSubmit} noValidate>
+      <div className={styles}>
+        <div className='input-text-block'>
+          <input
+            autoComplete={autoComplete}
+            type='text'
+            id={id}
+            name={name}
+            className={classNames}
+            placeholder={placeholder}
+            value={value}
+            onChange={_onChange}
+            onBlur={_onBlur}
+          />
+          <Button type='submit' variant='primary' text={btnText} />
         </div>
-      </form>
-    );
-  }
+      </div>
+    </form>
+  );
 }
 
 SearchBar.defaultProps = {

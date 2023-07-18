@@ -27,7 +27,7 @@ const Input = forwardRef((props, ref) => {
   } = props;
 
   const _onChange = e => {
-    if (e.target.name == 'image') {
+    if (e.target.name === 'image') {
       onChange(e.target.name, e.target.files[0]);
     } else {
       onChange(e.target.name, e.target.value);      

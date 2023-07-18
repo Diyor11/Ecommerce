@@ -10,8 +10,6 @@ import AddAddress from '../../components/Manager/AddAddress';
 import SubPage from '../../components/Manager/SubPage';
 import { useNavigate } from 'react-router-dom';
 import { useHttp } from '../../hooks';
-import { useDispatch } from 'react-redux';
-import { addAddress } from '../../redux/profleSlice';
 import { useForm } from "react-hook-form";
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
