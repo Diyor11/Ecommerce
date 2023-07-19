@@ -10,29 +10,20 @@ import Button from '../Button';
 
 function SearchBar(props) {
   const [value, setValue] = useState('')
-  const [typingTimeout, setTypingTimeout] = useState(0)
 
   const _onChange = (e) => {
-    const name = e.target.name;
     const value = e.target.value;
 
-    if (this.state.typingTimeout) {
-      clearTimeout(typingTimeout);
-    }
-
     setValue(value)
-    setTypingTimeout(setTimeout(() => {
-      if (this.props.onSearch) {
-        props.onSearch({ name, value });
-      }
-    }, 1000))
+    if(value.trim().length > 2) {
+      props.onSearch({name, value})
+    }
   }
 
   const _handleSubmit = (e) => {
     e.preventDefault();
 
-    const name = this.props.name;
-    const value = this.state.value;
+    const name = props.name;
 
     if (props.onSearchSubmit) {
       props.onSearchSubmit({ name, value });
@@ -49,14 +40,13 @@ function SearchBar(props) {
   }
 
   const {
-    id,
     name,
     placeholder,
     className,
     inlineBtn,
     btnText,
     autoComplete
-  } = this.props;
+  } = props;
 
   const styles = `search-box${inlineBtn ? ` inline-btn-box` : ''}`;
   const classNames = `input-text search-box${`${
@@ -70,7 +60,7 @@ function SearchBar(props) {
           <input
             autoComplete={autoComplete}
             type='text'
-            id={id}
+            // id={id}
             name={name}
             className={classNames}
             placeholder={placeholder}

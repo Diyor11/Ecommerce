@@ -4,19 +4,17 @@
  *
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 
-import { ROLES } from '../../constants';
 import SubPage from '../../components/Manager/SubPage';
 import OrderList from '../../components/Manager/OrderList';
 import OrderSearch from '../../components/Manager/OrderSearch';
 import SearchResultMeta from '../../components/Manager/SearchResultMeta';
 import NotFound from '../../components/Common/NotFound';
 import LoadingIndicator from '../../components/Common/LoadingIndicator';
-// import Pagination from '../../components/Common/Pagination';
 import { useHttp } from '../../hooks';
-import { useNavigate } from 'react-router-dom';
+import { getSearch } from '../../utils';
 
 function List(props) {
   
@@ -31,30 +29,26 @@ function List(props) {
   
 
   const handleOrderSearch = e => {
-    if (e.value.length >= 2)
+    if (e.value.length >= 3)
       setSearch(e.value)
     else
       setSearch('')
   };
   
-  const navigate = useNavigate()
-  const { user = {role: ''}, advancedFilters = [] } = props;
   const isSearch = search.length > 0;
-  const filteredOrders = search
-    ? setOrders(prev => prev.filter(o => o._id.includes(search)))
-    : orders;
+  const filteredOrders = useMemo(() => {
+    return getSearch(search, orders, '_id')
+  }, [search, orders])
 
   const displayOrders = filteredOrders && filteredOrders.length > 0;
+
+  console.log(filteredOrders);
+  
 
   return (
     <div className='order-dashboard'>
       <SubPage
         title='Your Orders'
-        actionTitle={user.role === ROLES.Admin && 'Customer Orders'}
-        handleAction={() =>
-          user.role === ROLES.Admin &&
-          navigate('/dashboard/orders/customers')
-        }
       >
         <OrderSearch
           onBlur={handleOrderSearch}
@@ -67,12 +61,12 @@ function List(props) {
           <>
             <SearchResultMeta
               label='orders'
-              count={isSearch ? filteredOrders.length : advancedFilters.count}
+              count={isSearch ? filteredOrders.length : orders.length}
             />
             <OrderList orders={filteredOrders} />
           </>
         )}
-        {!isLoading && !displayOrders && (
+        {!isLoading && !true && (
           <NotFound message='You have no orders yet.' />
         )}
       </SubPage>

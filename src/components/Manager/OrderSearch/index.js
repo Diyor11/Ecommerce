@@ -9,6 +9,7 @@ import React from 'react';
 import SearchBar from '../../Common/SearchBar';
 
 const OrderSearch = props => {
+
   return (
     <div className='mb-3'>
       <SearchBar
@@ -18,6 +19,7 @@ const OrderSearch = props => {
         onSearch={props.onSearch}
         onBlur={props.onBlur}
         onSearchSubmit={props.onSearchSubmit}
+        id='order-serach'
       />
     </div>
   );
