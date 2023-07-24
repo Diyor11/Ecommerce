@@ -12,6 +12,7 @@ import AddToWishList from '../AddToWishList';
 import { useHttp } from '../../../hooks';
 import { useSelector } from 'react-redux';
 import {AiFillStar} from 'react-icons/ai'
+import { toast } from 'react-toastify';
 
 const ProductList = ({ products, updateProducts }) => {
   const {sendRequest} = useHttp()
@@ -31,6 +32,7 @@ const ProductList = ({ products, updateProducts }) => {
       )
     } else {
       navigate('/login')
+      toast('Please login before', {type: 'warning'})
     }
   }
 

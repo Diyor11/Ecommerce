@@ -65,64 +65,66 @@ function Login() {
       {isLoading && <LoadingIndicator />}
       <h2>Login</h2>
       <hr />
-      <form onSubmit={handleSubmit(_handleSubmit)} noValidate>
-        <Row>
-          <Col
-            xs={{ size: 12, order: 2 }}
-            md={{ size: '6', order: 1 }}
-            className='p-0'
-          >
-            <Col xs='12' md='12'>
-              <Input
-                type={'text'}
-                error={errors['email']}
-                label={'Email Address'}
-                placeholder={'Please Enter Your Email'}
-                {...inputIntegrate({name: 'email'}, register)}
-              />
+      <div class='container'>
+        <form onSubmit={handleSubmit(_handleSubmit)} noValidate>
+          <Row>
+            <Col
+              xs={{ size: 12, order: 2 }}
+              md={{ size: '6', order: 1 }}
+              className='p-0'
+            >
+              <Col xs='12' md='12'>
+                <Input
+                  type={'text'}
+                  error={errors['email']}
+                  label={'Email Address'}
+                  placeholder={'Please Enter Your Email'}
+                  {...inputIntegrate({name: 'email'}, register)}
+                />
+              </Col>
+              <Col xs='12' md='12'>
+                <Input
+                  type={'password'}
+                  error={errors['password']}
+                  label={'Password'}
+                  placeholder={'Please Enter Your Password'}
+                  {...inputIntegrate({name: 'password'}, register)}
+                />
+              </Col>
             </Col>
-            <Col xs='12' md='12'>
-              <Input
-                type={'password'}
-                error={errors['password']}
-                label={'Password'}
-                placeholder={'Please Enter Your Password'}
-                {...inputIntegrate({name: 'password'}, register)}
-              />
+            <Col
+              xs={{ size: 12, order: 1 }}
+              md={{ size: '6', order: 2 }}
+              className='mb-2 mb-md-0'
+            >
+              <SignupProvider />
             </Col>
-          </Col>
-          <Col
-            xs={{ size: 12, order: 1 }}
-            md={{ size: '6', order: 2 }}
-            className='mb-2 mb-md-0'
-          >
-            <SignupProvider />
-          </Col>
-        </Row>
-        <hr />
-        <div className='d-flex flex-column flex-md-row align-items-md-center justify-content-between'>
-          <div className='d-flex justify-content-between align-items-center mb-3 mb-md-0'>
-            <Button
-              type='submit'
-              variant='primary'
-              text='Login'
-              disabled={isLoading}
-            />
-            <Button
-              text='Create an account'
-              variant='link'
-              className='ml-md-3'
-              onClick={registerLink}
-            />
+          </Row>
+          <hr />
+          <div className='d-flex flex-column flex-md-row align-items-md-center justify-content-between'>
+            <div className='d-flex justify-content-between align-items-center mb-3 mb-md-0'>
+              <Button
+                type='submit'
+                variant='primary'
+                text='Login'
+                disabled={isLoading}
+              />
+              <Button
+                text='Create an account'
+                variant='link'
+                className='ml-md-3'
+                onClick={registerLink}
+              />
+            </div>
+            <NavLink
+              className='redirect-link forgot-password-link'
+              to={'/login'}
+            >
+              Forgot Password?
+            </NavLink>
           </div>
-          <NavLink
-            className='redirect-link forgot-password-link'
-            to={'/login'}
-          >
-            Forgot Password?
-          </NavLink>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

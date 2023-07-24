@@ -8,14 +8,7 @@
   height: 100%;
   width: 470px;
   z-index: 1000;
-  // -webkit-box-shadow: $box-shadow;
-  // box-shadow: $box-shadow;
   @include transition($layout-transition-higher-speed);
-
-  @include media-breakpoint-down(xs) {
-    width: 88%;
-    top: 0;
-  }
 }
 
 // show hidden cart popup
@@ -24,6 +17,11 @@
     visibility: visible;
     right: 0;
     @include transition($layout-transition-higher-speed);
+
+    @include media-breakpoint-down(md) {
+      width: 88%;
+      top: 0;
+    }
   }
 
   .dark-overflow {

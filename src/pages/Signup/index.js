@@ -74,49 +74,51 @@ function Signup(props) {
       <h2>Sign Up</h2>
       <hr />
       {(isLoading || profileLoading) && <LoadingIndicator />}
-      <form onSubmit={handleSubmit(_handleSubmit)} noValidate>
-        <Row>
-          <Col
-            xs={{ size: 12, order: 2 }}
-            md={{ size: '6', order: 1 }}
-            className='p-0'
-          >
-            {inputsData.map(({breakpoints, inputCredentials}) => (
-              <Col {...breakpoints} key={inputCredentials.name}>
-                <Input
-                  error={errors[inputCredentials.name]}
-                  {...inputCredentials}
-                />
-              </Col>
-            ))}
-          </Col>
-          <Col
-            xs={{ size: 12, order: 1 }}
-            md={{ size: '6', order: 2 }}
-            className='mb-2 mb-md-0'
-          >
-            <SignupProvider />
-          </Col>
-        </Row>
-        <hr />
-        <Checkbox
-          id={'subscribe'}
-          label={'Subscribe to newsletter'}
-          checked={false}
-          name='isSubscribed'
-          onChange={() => {}}
-        />
-        <div className='d-flex flex-column flex-md-row align-items-md-center justify-content-between'>
-          <Button
-            type='submit'
-            variant='primary'
-            text='Sign Up'
+      <div class='container'>
+        <form onSubmit={handleSubmit(_handleSubmit)} noValidate>
+          <Row>
+            <Col
+              xs={{ size: 12, order: 2 }}
+              md={{ size: '6', order: 1 }}
+              className='p-0'
+            >
+              {inputsData.map(({breakpoints, inputCredentials}) => (
+                <Col {...breakpoints} key={inputCredentials.name}>
+                  <Input
+                    error={errors[inputCredentials.name]}
+                    {...inputCredentials}
+                  />
+                </Col>
+              ))}
+            </Col>
+            <Col
+              xs={{ size: 12, order: 1 }}
+              md={{ size: '6', order: 2 }}
+              className='mb-2 mb-md-0'
+            >
+              <SignupProvider />
+            </Col>
+          </Row>
+          <hr />
+          <Checkbox
+            id={'subscribe'}
+            label={'Subscribe to newsletter'}
+            checked={false}
+            name='isSubscribed'
+            onChange={() => {}}
           />
-          <NavLink className='mt-3 mt-md-0 redirect-link' to={'/login'}>
-            Back to login
-          </NavLink>
-        </div>
-      </form>
+          <div className='d-flex flex-column flex-md-row align-items-md-center justify-content-between'>
+            <Button
+              type='submit'
+              variant='primary'
+              text='Sign Up'
+            />
+            <NavLink className='mt-3 mt-md-0 redirect-link' to={'/login'}>
+              Back to login
+            </NavLink>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
