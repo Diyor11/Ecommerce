@@ -65,7 +65,7 @@ function Login() {
       {isLoading && <LoadingIndicator />}
       <h2>Login</h2>
       <hr />
-      <div class='container'>
+      <div className='container'>
         <form onSubmit={handleSubmit(_handleSubmit)} noValidate>
           <Row>
             <Col

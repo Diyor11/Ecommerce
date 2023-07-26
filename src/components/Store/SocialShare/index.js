@@ -20,7 +20,7 @@ const SocialShare = props => {
 
   const shareMsg = `I ♥ ${
     product.name
-  } product on Mern Store!  Here's the link, ${
+  } product on BEE Store!  Here's the link, ${
     window.location.protocol !== 'https' ? 'http' : 'https'
   }://${window.location.host}/product/${product.slug}`;
 

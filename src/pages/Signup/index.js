@@ -74,7 +74,7 @@ function Signup(props) {
       <h2>Sign Up</h2>
       <hr />
       {(isLoading || profileLoading) && <LoadingIndicator />}
-      <div class='container'>
+      <div className='container'>
         <form onSubmit={handleSubmit(_handleSubmit)} noValidate>
           <Row>
             <Col

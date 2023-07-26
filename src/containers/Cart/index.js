@@ -76,57 +76,65 @@ function Cart(props){
 
 
   return (
-    <div className='cart'>
-      <div className='cart-header'>
-        {isCartOpen && (
-          <Button
-            borderless
-            variant='empty'
-            ariaLabel='close the cart'
-            icon={<FaTimes />}
-            onClick={closeCart}
-          />
-        )}
+    <div
+      className={isCartOpen ? 'mini-cart-open' : 'hidden-mini-cart'}
+      aria-hidden={isCartOpen ? false : true}
+    >
+      <div className='mini-cart'>
+        <div className='cart'>
+          <div className='cart-header'>
+            {isCartOpen && (
+              <Button
+                borderless
+                variant='empty'
+                ariaLabel='close the cart'
+                icon={<FaTimes />}
+                onClick={closeCart}
+              />
+            )}
+          </div>
+          {cartItems.length > 0 ? (
+            <div className='cart-body'>
+              <CartList
+                closeCart={closeCart}
+                cartItems={cartItems}
+                handleRemoveFromCart={handleRemoveFromCart}
+              />
+            </div>
+          ) : (
+            <div className='empty-cart'>
+              <BagIcon />
+              <p>Your shopping cart is empty</p>
+            </div>
+          )}
+          {displayAdress && (
+            <div className='select-address'>
+              <SelectOption
+                error={null}
+                label={'Select Address'}
+                name={'address'}
+                value={selectedAddress}
+                options={addresses}
+                handleSelectChange={value => {
+                  setSelectedAddress(value)
+                }}
+              />      
+            </div>  
+          )}
+          {cartItems.length > 0 && (
+            <div className='cart-checkout'>
+              <CartSummary cartTotal={totalPrice} />
+              <Checkout
+                handleShopping={handleShopping}
+                handleCheckout={handleCheckout}
+                placeOrder={placeOrder}
+                authenticated={authenticated}
+              />
+            </div>
+          )}
+        </div>
       </div>
-      {cartItems.length > 0 ? (
-        <div className='cart-body'>
-          <CartList
-            closeCart={closeCart}
-            cartItems={cartItems}
-            handleRemoveFromCart={handleRemoveFromCart}
-          />
-        </div>
-      ) : (
-        <div className='empty-cart'>
-          <BagIcon />
-          <p>Your shopping cart is empty</p>
-        </div>
-      )}
-      {displayAdress && (
-        <div className='select-address'>
-          <SelectOption
-            error={null}
-            label={'Select Address'}
-            name={'address'}
-            value={selectedAddress}
-            options={addresses}
-            handleSelectChange={value => {
-              setSelectedAddress(value)
-            }}
-          />      
-        </div>  
-      )}
-      {cartItems.length > 0 && (
-        <div className='cart-checkout'>
-          <CartSummary cartTotal={totalPrice} />
-          <Checkout
-            handleShopping={handleShopping}
-            handleCheckout={handleCheckout}
-            placeOrder={placeOrder}
-            authenticated={authenticated}
-          />
-        </div>
-      )}
+      <div className={isCartOpen ? 'drawer-backdrop dark-overflow' : 'drawer-backdrop'} onClick={closeCart} />
     </div>
   );
 }

@@ -51,7 +51,7 @@ function App() {
     <>
       <BrowserRouter>
         <div className='application'>
-          <ToastContainer theme="colored" autoClose={1000}/>
+          <ToastContainer theme="colored" autoClose={800}/>
           <Navigation />
           <main className='main'>
             <Container>
