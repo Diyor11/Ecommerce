@@ -13,6 +13,7 @@ const MiniBrand = ({toggleBrand}) => {
   const brands = useSelector(state => state.product.brands)
 
   return (
+    <div className='mini-brand'>
     <div className='mini-brand-list'>
       <div className='d-flex align-items-center justify-content-between min-brand-title'>
         <h4 className='mb-0 text-uppercase'>Shop By Brand</h4>
@@ -39,6 +40,7 @@ const MiniBrand = ({toggleBrand}) => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };

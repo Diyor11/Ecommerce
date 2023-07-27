@@ -41,6 +41,7 @@ import { fetchBrands } from '../../redux/productSlice';
 import { toggleCart } from '../../redux/modalSlice';
 import Brand from './Brand';
 import CartModal from './CartModal ';
+import ProfileDropdown from './ProfileDropdown';
 
 const columnsBreakpoints = {
   brand: {xs: { size: 12, order: 1 }, sm: { size: 12, order: 1 }, md: { size: 3, order: 1 }, lg: { size: 3, order: 1 }},
@@ -56,14 +57,11 @@ export default function Navigation() {
   const [isBrandOpen, setIsBrandOpen] = useState(false)
   const [categories, setCategories] = useState([])
 
-  const isCartOpen = useSelector(state => state.modal.cartOpen)
 
-  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const cartItems = useSelector(state => state.cart.products)
-  const {user, authenticated} = useSelector(state => state.profile)
-  const signOut = () => dispatch(logOut())
+  const {authenticated} = useSelector(state => state.profile)
   const displayCategories = useMemo(() => categories && categories.length > 0, [categories])
 
   useEffect(() => {
@@ -96,7 +94,7 @@ export default function Navigation() {
             <div className='header-links'>
               <div>
                 {
-                  categories && categories.length > 0 && (
+                  displayCategories && (
                     <Button
                       borderless
                       variant='empty'
@@ -120,77 +118,29 @@ export default function Navigation() {
                 onClick={_toggleCart}
               />
               <Nav navbar>
-                <Dropdown
-                  nav
-                  inNavbar
-                  toggle={toggleBrand}
-                  isOpen={isBrandOpen}
-                  direction='left'
-                >
+                <Dropdown nav inNavbar toggle={toggleBrand} isOpen={isBrandOpen} direction='left'>
                   <DropdownToggle nav>
                     Brands
                     <FiChevronDown />
                   </DropdownToggle>
                   <DropdownMenu className='nav-brand-dropdown'>
-                    <div className='mini-brand'>
-                      <MiniBrand
-                        toggleBrand={toggleBrand}
-                      />
-                    </div>
+                      <MiniBrand toggleBrand={toggleBrand} />
                   </DropdownMenu>
                 </Dropdown>
+
                 <NavItem>
-                  <NavLink
-                    to='/shop'
-                    className='nav-link'
-                  >
+                  <NavLink to='/shop' className='nav-link'>
                     Shop
                   </NavLink>
                 </NavItem>
-                {
-                  (authenticated && user) ? (
-                    <UncontrolledDropdown nav inNavbar>
-                      <DropdownToggle nav>
-                        {user.firstName}
-                        <FiChevronDown />
-                      </DropdownToggle>
-                      <DropdownMenu>
-                        <DropdownItem
-                          onClick={() => navigate('/dashboard')}
-                        >
-                          Dashboard
-                        </DropdownItem>
-                        <DropdownItem onClick={signOut}>Sign Out</DropdownItem>
-                      </DropdownMenu>
-                    </UncontrolledDropdown>
-                  ):(
-                    <UncontrolledDropdown nav inNavbar>
-                      <DropdownToggle nav>
-                        Welcome!
-                        <FiChevronDown />
-                      </DropdownToggle>
-                      <DropdownMenu>
-                        <DropdownItem onClick={() => navigate('/login')}>
-                          Login
-                        </DropdownItem>
-                        <DropdownItem onClick={() => navigate('/register')}>
-                          Sign Up
-                        </DropdownItem>
-                      </DropdownMenu>
-                    </UncontrolledDropdown>
-                  )
-                }
+                <ProfileDropdown />
               </Nav>
             </Navbar>
           </Col>
         </Row>
       </Container>
       <CartModal authenticated={authenticated} />
-      <Menu 
-        isMenuOpen={isMenuOpen}
-        categories={categories}
-        toggleMenu={toggleMenu}
-      />
+      <Menu isMenuOpen={isMenuOpen} categories={categories} toggleMenu={toggleMenu} />
     </header>
   )
 }
