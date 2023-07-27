@@ -6,7 +6,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {useHttp} from '../../hooks'
 
 import HeaderTop from './HeaderTop';
@@ -18,11 +18,9 @@ import {
   Navbar,
   Nav,
   NavItem,
-  UncontrolledDropdown,
   Dropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
 } from 'reactstrap';
 
 import {FaBars} from 'react-icons/fa'
@@ -33,9 +31,7 @@ import Button from '../../components/Common/Button';
 import CartIcon from '../../components/Common/CartIcon';
 import MiniBrand from '../../components/Store//MiniBrand';
 import Menu from '../NavigationMenu';
-import Cart from '../Cart';
 import { useSelector } from 'react-redux';
-import { logOut } from '../../redux/profleSlice';
 import { useDispatch } from 'react-redux';
 import { fetchBrands } from '../../redux/productSlice';
 import { toggleCart } from '../../redux/modalSlice';
