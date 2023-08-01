@@ -1,5 +1,5 @@
-// import Application from './containers/Application'
 
+import { Analytics } from '@vercel/analytics/react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import Footer from './components/Common/Footer'
@@ -91,6 +91,7 @@ function App() {
           <Footer />
         </div>
       </BrowserRouter>
+      <Analytics />
     </>
   )
 }
