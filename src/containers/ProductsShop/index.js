@@ -4,7 +4,7 @@
  *
  */
 
-import {useEffect, useMemo, useState} from 'react';
+import {useEffect, useState} from 'react';
 import { useHttp } from '../../hooks';
 
 import ProductList from '../../components/Store/ProductList';

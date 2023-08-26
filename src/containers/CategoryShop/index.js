@@ -7,7 +7,6 @@
 import React, {useEffect, useState} from 'react';
 import ProductList from '../../components/Store/ProductList';
 import NotFound from '../../components/Common/NotFound';
-import LoadingIndicator from '../../components/Common/LoadingIndicator';
 import { useHttp } from '../../hooks';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';

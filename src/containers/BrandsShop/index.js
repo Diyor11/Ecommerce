@@ -13,7 +13,6 @@ import { setDiteils } from '../../redux/productSlice';
 
 import ProductList from '../../components/Store/ProductList';
 import NotFound from '../../components/Common/NotFound';
-import LoadingIndicator from '../../components/Common/LoadingIndicator';
 import SkeletonList from '../../components/Common/SkeletonList';
 
 function BrandsShop() {
