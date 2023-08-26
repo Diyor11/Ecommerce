@@ -12,6 +12,7 @@ import { useHttp } from '../../hooks';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDiteils } from '../../redux/productSlice';
+import SkeletonList from '../../components/Common/SkeletonList';
 
 function CategoryShop(){
 
@@ -47,14 +48,14 @@ function CategoryShop(){
 
   return (
     <div className='category-shop'>
-      {isLoading && <LoadingIndicator backdrop/>}
-      {products && products.length > 0 && (
+      {isLoading ? (
+        <SkeletonList />
+      ) : products?.length > 0 ? (
         <ProductList
           products={products}
           updateProducts={setProducts}
         />
-      )}
-      {!isLoading && products && products.length <= 0 && (
+      ) : (
         <NotFound message='No products found.' />
       )}
     </div>

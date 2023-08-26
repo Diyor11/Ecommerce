@@ -4,14 +4,14 @@
  *
  */
 
-import {useEffect, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import { useHttp } from '../../hooks';
 
 import ProductList from '../../components/Store/ProductList';
 import NotFound from '../../components/Common/NotFound';
-import LoadingIndicator from '../../components/Common/LoadingIndicator';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDiteils, setFilter } from '../../redux/productSlice';
+import SkeletonList from '../../components/Common/SkeletonList';
 
 function ProductsShop() {
 
@@ -41,18 +41,16 @@ function ProductsShop() {
     return () => dispatch(setFilter({page: 1}))    
   }, [dispatch])
   
-  const displayProducts = products && products.length > 0;
-
   return (
     <div className='products-shop'>
-      {isLoading && <LoadingIndicator backdrop/>}
-      {displayProducts && (
+      {isLoading ? (
+        <SkeletonList />
+      ) : products?.length > 0 ? (
         <ProductList
           products={products}
           updateProducts={setProducts}
         />
-      )}
-      {!isLoading && !displayProducts && (
+      ) : (
         <NotFound message='No products found.' />
       )}
     </div>

@@ -19,6 +19,8 @@
         height: 120px;
         object-fit: cover;
         border-radius: $border-radius-default;
+        width: 100%;
+        object-fit: cover
       }
 
       .product-desc {

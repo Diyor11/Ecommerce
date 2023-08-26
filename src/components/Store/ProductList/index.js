@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 import {AiFillStar} from 'react-icons/ai'
 import { toast } from 'react-toastify';
 
-const ProductList = ({ products, updateProducts }) => {
+const ProductList = ({ products, updateProducts}) => {
   const {sendRequest} = useHttp()
   const isAuth = useSelector(state => state.profile.authenticated)
   const navigate = useNavigate()
