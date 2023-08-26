@@ -1,11 +1,11 @@
 import React from 'react';
-import { NavLink } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 import Button from '../../components/Common/Button'
 import { FaBars } from 'react-icons/fa';
 
 const Brand = ({ displayCategories, toggleMenu }) => {
   return (
-    <div className='brand'>
+    <NavLink to='/' className='brand'>
       {displayCategories && (
         <Button
           borderless
@@ -19,7 +19,7 @@ const Brand = ({ displayCategories, toggleMenu }) => {
       <NavLink to='/'>
         <h1 className='logo'>BEE Store</h1>
       </NavLink>
-    </div>
+    </NavLink>
   );
 };
 
