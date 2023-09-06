@@ -38,7 +38,6 @@ const ProfileDropdown = () => {
     <UncontrolledDropdown nav inNavbar>
       <DropdownToggle nav caret>
         {user.firstName}
-        <FiChevronDown />
       </DropdownToggle>
       <DropdownMenu right>
         <DropdownItem onClick={() => navigate('/dashboard')}>Dashboard</DropdownItem>
