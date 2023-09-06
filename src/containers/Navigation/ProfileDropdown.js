@@ -37,7 +37,7 @@ const ProfileDropdown = () => {
   return (
     <UncontrolledDropdown nav inNavbar>
       <DropdownToggle nav caret>
-        {user.name}
+        {user.firstName}
         <FiChevronDown />
       </DropdownToggle>
       <DropdownMenu right>
